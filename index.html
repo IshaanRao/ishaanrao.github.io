@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Engineering portfolio of Ishaan Rao, aspiring mechanical engineer.">
+<title>Ishaan Rao Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --bg:#F4F6F8;
+  --surface:#FFFFFF;
+  --ink:#0E1A28;
+  --muted:#586879;
+  --line:#DCE2E9;
+  --accent:#1D5BB0;
+  --accent-ink:#FFFFFF;
+  --accent-soft:rgba(29,91,176,.09);
+  --grid:rgba(29,91,176,.07);
+  --nav:rgba(244,246,248,.86);
+  --display:"Barlow Semi Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --wrap:1120px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0A1220; --surface:#101B2C; --ink:#E5ECF4; --muted:#93A3B6; --line:#223250;
+    --accent:#6EA6F2; --accent-ink:#0A1220; --accent-soft:rgba(110,166,242,.12);
+    --grid:rgba(110,166,242,.07); --nav:rgba(10,18,32,.86);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0A1220; --surface:#101B2C; --ink:#E5ECF4; --muted:#93A3B6; --line:#223250;
+  --accent:#6EA6F2; --accent-ink:#0A1220; --accent-soft:rgba(110,166,242,.12);
+  --grid:rgba(110,166,242,.07); --nav:rgba(10,18,32,.86);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.65 var(--body);margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:24px}
+a{color:inherit}
+img,video{max-width:100%;display:block}
+button{font:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--nav);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:700 20px/1 var(--display);letter-spacing:.02em;text-transform:uppercase}
+.mark{width:32px;height:32px;border:2px solid var(--ink);display:grid;place-items:center;font:700 14px/1 var(--display);letter-spacing:.02em}
+.links{display:flex;align-items:center;gap:6px}
+.links a{text-decoration:none;font-weight:500;font-size:15px;padding:8px 12px;color:var(--muted);border-radius:6px}
+.links a:hover{color:var(--ink);background:var(--accent-soft)}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;font-size:15px;padding:11px 18px;border-radius:6px;border:1.5px solid var(--ink);color:var(--ink);background:transparent;cursor:pointer;white-space:nowrap}
+.btn:hover{background:var(--accent-soft)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.primary:hover{filter:brightness(1.08)}
+.links .btn{padding:8px 14px;font-size:14px;color:var(--ink)}
+
+/* hero */
+.hero{border-bottom:1px solid var(--line);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:32px 32px;background-position:-1px -1px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:56px;align-items:center;padding-block:72px 80px}
+.eyebrow{font:500 12.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 18px}
+h1{font:700 clamp(52px,7.5vw,92px)/.92 var(--display);text-transform:uppercase;letter-spacing:-.01em;margin:0}
+.lede{font-size:clamp(18px,2vw,20px);line-height:1.55;color:var(--muted);max-width:34ch;margin:22px 0 30px}
+.lede strong{color:var(--ink);font-weight:600}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.reel{position:relative;margin:0}
+.reel .frame{border:1.5px solid var(--ink);background:var(--surface);padding:8px;position:relative}
+.reel video{width:100%;aspect-ratio:16/9;object-fit:cover;background:#000}
+.reel figcaption{display:flex;justify-content:space-between;gap:12px;font:500 12px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:12px}
+.reel figcaption a{color:var(--accent);text-decoration:none}
+.reel figcaption a:hover{text-decoration:underline}
+/* corner ticks, like crop marks */
+.frame::before,.frame::after{content:"";position:absolute;width:14px;height:14px;border-color:var(--accent);border-style:solid}
+.frame::before{top:-7px;left:-7px;border-width:2px 0 0 2px}
+.frame::after{bottom:-7px;right:-7px;border-width:0 2px 2px 0}
+
+/* sections */
+section.block{padding-block:80px}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:36px;flex-wrap:wrap}
+h2{font:700 clamp(34px,4.5vw,48px)/1 var(--display);text-transform:uppercase;margin:0}
+.sec-head p{margin:0;color:var(--muted);max-width:42ch}
+
+/* project cards */
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.card{display:flex;flex-direction:column;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;transition:border-color .15s ease,transform .15s ease}
+.card:hover{border-color:var(--accent)}
+@media (prefers-reduced-motion:no-preference){.card:hover{transform:translateY(-3px)}}
+.card .thumb{aspect-ratio:16/10;overflow:hidden;background:var(--bg);position:relative}
+.card .thumb img{width:100%;height:100%;object-fit:cover}
+.badge{position:absolute;left:12px;top:12px;font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;background:var(--surface);color:var(--ink);padding:6px 8px;border-radius:4px}
+.card .body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:10px;flex:1}
+.meta{font:500 12px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;gap:12px;flex-wrap:wrap}
+.meta span+span::before{content:"/";margin-right:12px;color:var(--line)}
+.card h3{font:700 28px/1.05 var(--display);text-transform:uppercase;margin:0;text-wrap:balance}
+.card p{margin:0;color:var(--muted)}
+.more{margin-top:auto;padding-top:8px;font-weight:600;color:var(--accent);font-size:15px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}
+.tags li{font:500 11.5px/1 var(--mono);padding:6px 9px;border-radius:4px;background:var(--accent-soft);color:var(--ink)}
+
+/* contact */
+.contact{border-top:1px solid var(--line)}
+.contact .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:start}
+.contact p{color:var(--muted);margin:14px 0 0;max-width:40ch}
+.cards{display:grid;gap:12px}
+.cline{display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;flex-wrap:wrap}
+.cline .k{font:500 11.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.cline .v{font-weight:600;font-size:17px;overflow-wrap:anywhere}
+.cline a.v{text-decoration:none}
+.cline a.v:hover{color:var(--accent)}
+.small{padding:8px 14px;font-size:14px}
+
+footer{border-top:1px solid var(--line);padding-block:24px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer .made{max-width:62ch}
+
+/* project detail page */
+.detail{padding-block:40px 80px;min-height:calc(100vh - 130px)}
+.back{display:inline-flex;align-items:center;gap:8px;background:none;border:0;color:var(--muted);cursor:pointer;padding:6px 0;font-weight:500;text-decoration:none}
+.back:hover{color:var(--ink)}
+.dhead{margin:24px 0 32px;display:grid;gap:14px}
+.dhead h1{font-size:clamp(40px,6vw,68px)}
+.dhead .summary{font-size:clamp(18px,2vw,20px);color:var(--muted);max-width:60ch;margin:0}
+.dgrid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:48px;align-items:start}
+.stage{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.stage .media{aspect-ratio:16/10;background:#0A1220;display:grid;place-items:center}
+.stage .media img,.stage .media video{width:100%;height:100%;object-fit:contain}
+.stage .cap{padding:14px 18px;border-top:1px solid var(--line);color:var(--muted);font-size:14.5px;display:flex;justify-content:space-between;gap:16px}
+.stage .cap .n{font:500 12px/1.6 var(--mono);letter-spacing:.06em;white-space:nowrap}
+.strip{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.strip button{width:96px;aspect-ratio:16/10;padding:0;border:2px solid transparent;border-radius:6px;overflow:hidden;cursor:pointer;background:var(--surface);position:relative;opacity:.72}
+.strip button:hover{opacity:1}
+.strip button[aria-current="true"]{border-color:var(--accent);opacity:1}
+.strip img{width:100%;height:100%;object-fit:cover}
+.strip .play{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:18px;background:rgba(0,0,0,.28)}
+.side{display:grid;gap:28px}
+.side h4{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+.side p{margin:0}
+.spec{margin:0;border-top:1px solid var(--line)}
+.spec div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+.spec dt{font:500 11.5px/1.7 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.spec dd{margin:0;font-size:15px}
+.pager{display:flex;justify-content:space-between;gap:16px;margin-top:56px;padding-top:24px;border-top:1px solid var(--line);flex-wrap:wrap}
+.pager a{text-decoration:none;display:grid;gap:4px;max-width:48%}
+.pager a:last-child{text-align:right;margin-left:auto}
+.pager .k{font:500 11.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.pager .t{font:700 22px/1.1 var(--display);text-transform:uppercase}
+.pager a:hover .t{color:var(--accent)}
+
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr;gap:40px;padding-block:48px 56px}
+  .grid{grid-template-columns:1fr}
+  .contact .wrap{grid-template-columns:1fr}
+  .dgrid{grid-template-columns:1fr;gap:32px}
+  section.block{padding-block:56px}
+}
+@media (max-width:520px){
+  .wrap{padding-inline:16px}
+  .links a:not(.btn){display:none}
+  .brand span.full{display:none}
+  .spec div{grid-template-columns:96px minmax(0,1fr)}
+  .strip button{width:78px}
+}
+</style>
+</head>
+<body>
+
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" data-home><span class="mark">IR</span><span class="full">Ishaan Rao</span></a>
+    <div class="links">
+      <a href="#projects" data-home>Projects</a>
+      <a href="#contact" data-home>Contact</a>
+      <a class="btn" href="https://www.linkedin.com/in/ishaan-rao-7438392a4/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</nav>
+
+<main id="home">
+  <header class="hero" id="top">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Mechanical engineering · UCLA</p>
+        <h1>Ishaan<br>Rao</h1>
+        <p class="lede"><strong>Aspiring mechanical engineer.</strong> Currently studying at UCLA and looking to learn every day.</p>
+        <div class="cta">
+          <a class="btn primary" href="#projects" data-home>See my projects</a>
+          <a class="btn" href="#contact" data-home>Get in touch</a>
+        </div>
+      </div>
+      <figure class="reel">
+        <div class="frame">
+          <video src="images/frc-robot-drive.mp4" poster="images/frc-robot-drive-poster.jpg" autoplay muted loop playsinline aria-label="Team 649's 2026 robot driving"></video>
+        </div>
+        <figcaption><span>Team 649 · 2026 competition robot</span><a href="#frc-2026">View project →</a></figcaption>
+      </figure>
+    </div>
+  </header>
+
+  <section class="block" id="projects">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Projects</h2>
+        <p>Things I've designed and built. Open a project for photos, videos, and details. All CAD shown is my own design.</p>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="block contact" id="contact">
+    <div class="wrap">
+      <div>
+        <h2>Get in touch</h2>
+        <p>I'm always happy to talk about internships, research, or anything mechanical.</p>
+      </div>
+      <div class="cards">
+        <div class="cline">
+          <div><div class="k">Email</div><div class="v" id="email">ishaanrao26@gmail.com</div></div>
+          <button class="btn small" id="copyEmail" type="button">Copy email</button>
+        </div>
+        <div class="cline">
+          <div><div class="k">LinkedIn</div><a class="v" href="https://www.linkedin.com/in/ishaan-rao-7438392a4/" target="_blank" rel="noopener">linkedin.com/in/ishaan-rao</a></div>
+          <a class="btn small" href="https://www.linkedin.com/in/ishaan-rao-7438392a4/" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<main id="detail" class="detail" hidden><div class="wrap" id="detailBody"></div></main>
+
+<footer><div class="wrap"><span>© 2026 Ishaan Rao</span><span class="made">This website was built with help from Claude, an AI assistant. The projects, CAD, and engineering work shown are my own.</span></div></footer>
+
+<script>
+/* ============================================================
+   PROJECTS — newest first. To add one, copy a block.
+   id:     short name used in the link (letters, numbers, dashes)
+   media:  as many photos/videos as you want; the first is the cover.
+           { type: "image", src, caption }  or
+           { type: "video", src, poster, caption }
+   ============================================================ */
+const PROJECTS = [
+  {
+    id: "frc-2026",
+    title: "2026 FRC Competition Robot",
+    year: "2026",
+    role: "Hardware lead · Team 649",
+    summary: "Team 649's robot for the 2026 FIRST Robotics Competition season. As hardware lead, I designed and built the shooter, turret, and drivetrain, and coordinated the work across every subsystem.",
+    details: "The shooter is a flywheel mounted on a turret, so the robot can aim without turning its whole drivetrain. I designed and built the shooter, turret, and drivetrain, taking each from CAD through fabrication and assembly. I also orchestrated work between the subsystem teams and led design reviews so the whole robot came together as one cohesive machine.",
+    specs: [
+      { label: "My role", value: "Hardware lead; designed and built the shooter, turret, and drivetrain" },
+      { label: "Leadership", value: "Coordinated work between subsystems and led design reviews for the full robot" },
+      { label: "Hardware", value: "Kraken motors, 5 mm HTD belt drives, machined aluminum plates" },
+      { label: "Team", value: "FRC Team 649" }
+    ],
+    tags: ["FRC", "CAD", "Drivetrain", "Shooter", "Turret"],
+    media: [
+      { type: "video", src: "images/frc-robot-drive.mp4", poster: "images/frc-robot-drive-poster.jpg", caption: "The robot driving during testing" },
+      { type: "video", src: "images/frc2026-early-shooting.mp4", poster: "images/frc2026-early-shooting-poster.jpg", caption: "Early robot build shooting" },
+      { type: "image", src: "images/frc2026-cad-assembly.png", caption: "My CAD: shooter and turret assembly on the robot" },
+      { type: "image", src: "images/frc2026-cad-shooter.png", caption: "My CAD: the shooter" },
+      { type: "image", src: "images/frc2026-cad-turret-ring.png", caption: "My CAD: turret ring gear and drive motor" },
+      { type: "image", src: "images/frc-turret-built.jpg", caption: "The shooter and turret assembled on the bench" }
+    ]
+  },
+  {
+    id: "cycloidal-gearbox",
+    title: "3D-Printed Cycloidal Gearbox",
+    year: "",
+    role: "Personal project",
+    summary: "A custom 3D-printed cycloidal gearbox for robotic arm joints, with a 16:1 reduction for under $15 in parts.",
+    details: "Cycloidal drives pack a high reduction ratio into a short, compact housing with low backlash, which suits arm joints. This one is designed around printed parts and off-the-shelf bearings to keep the cost down.",
+    specs: [
+      { label: "Purpose", value: "Joint actuator for robotic arms" },
+      { label: "Reduction", value: "16:1" },
+      { label: "Parts cost", value: "Under $15, not counting the motor" },
+      { label: "Made with", value: "3D-printed parts, ball bearings, bolted housing" }
+    ],
+    tags: ["CAD", "3D printing", "Power transmission", "Robotics"],
+    media: [
+      { type: "image", src: "images/cycloidal-v1-assembled.png", caption: "V1 · My CAD: the assembled gearbox mounted on its motor" },
+      { type: "image", src: "images/cycloidal-v1-section.png", caption: "V1 · My CAD: section view showing the stacked cycloidal discs, eccentric input shaft, and bearings" },
+      { type: "image", src: "images/cycloidal-v1-top.png", caption: "V1 · My CAD: top view of a cycloidal disc inside the ring of pins" }
+    ]
+  },
+  {
+    id: "frc-2025",
+    title: "2025 FRC Competition Robot",
+    year: "2025",
+    role: "Hardware co-lead · Team 649",
+    summary: "Team 649's robot for the 2025 FIRST Robotics Competition season. As hardware co-lead, I designed and built the drivetrain, the elevator, and the mechanism that lifts the whole robot, and coordinated the work across every subsystem.",
+    details: "I designed and built the drivetrain and an elevator that was heavily optimized to save space and move quickly. I also designed and built the robot's lifting mechanism, which is lightweight but strong enough to lift the entire 125-pound robot. Beyond my own subsystems, I orchestrated work between the subsystem teams and led design reviews so the whole robot came together as one cohesive machine.",
+    specs: [
+      { label: "My role", value: "Hardware co-lead; designed and built the drivetrain, elevator, and lifting mechanism" },
+      { label: "Leadership", value: "Coordinated work between subsystems and led design reviews for the full robot" },
+      { label: "Elevator", value: "Optimized for compact packaging and speed" },
+      { label: "Lift", value: "Lightweight mechanism that lifts the full 125 lb robot" },
+      { label: "Team", value: "FRC Team 649" }
+    ],
+    tags: ["FRC", "CAD", "Drivetrain", "Elevator", "Lifting mechanism"],
+    media: [
+      { type: "video", src: "images/frc2025-scoring.mp4", poster: "images/frc2025-scoring-poster.jpg", caption: "The robot running on a practice field" },
+      { type: "video", src: "images/frc2025-lift.mp4", poster: "images/frc2025-lift-poster.jpg", caption: "The lifting mechanism raising the full 125 lb robot" },
+      { type: "image", src: "images/frc2025-cad-elevator.png", caption: "My CAD: the entire elevator assembly" },
+      { type: "image", src: "images/frc2025-cad-frame.png", caption: "My CAD: the climbing mechanism" },
+      { type: "image", src: "images/frc2025-cad-gearbox.png", caption: "My CAD: the elevator gearbox" }
+    ]
+  },
+  {
+    id: "handwriting-robot",
+    title: "Handwriting Robot",
+    year: "",
+    role: "Personal project",
+    summary: "A 3D printer that writes realistic handwriting with a real pen. I designed the pen holder and wrote the software that turns typed text into handwritten strokes.",
+    details: "I designed and printed a pen holder that mounts to the printer's toolhead. A rubber band preloads the pen against the page, so it keeps constant contact even when the paper or bed height varies. On the software side, I used a recurrent neural network library to generate natural-looking handwriting from text, then wrote code to convert those strokes into G-code my printer could run.",
+    specs: [
+      { label: "Hardware", value: "Custom 3D-printed pen holder with rubber-band preload for constant pen pressure" },
+      { label: "Software", value: "RNN-generated handwriting, converted to G-code with my own code" },
+      { label: "Machine", value: "My 3D printer, used as a pen plotter" }
+    ],
+    tags: ["CAD", "3D printing", "Mechanism design", "Machine learning", "G-code", "Software"],
+    media: [
+      { type: "video", src: "images/handwriting-robot.mp4", poster: "images/handwriting-robot-poster.jpg", caption: "The robot writing a paragraph on lined paper" },
+      { type: "image", src: "images/handwriting-pen-holder-cad.png", caption: "My CAD: the pen holder, with the pen clamp on a sliding carriage" }
+    ]
+  },
+  {
+    id: "frc-2024",
+    title: "2024 FRC Competition Robot",
+    year: "2024",
+    role: "Climb subsystem lead · Team 649",
+    summary: "As climb subsystem lead, I built a dual-purpose elevator that raised our intake to score and also pulled the whole robot up to climb.",
+    details: "One elevator did two jobs: it lifted the intake up to scoring height, and it let the robot climb at the end of the match. Space on the robot was very tight, so I routed the rigging string inside the tubes to keep the mechanism's footprint as small as possible.",
+    specs: [
+      { label: "My role", value: "Climb subsystem lead; designed and built the elevator" },
+      { label: "Dual purpose", value: "Raises the intake to score and lifts the robot to climb" },
+      { label: "Packaging", value: "String routed inside the tubes to minimize footprint" },
+      { label: "Team", value: "FRC Team 649" }
+    ],
+    tags: ["FRC", "CAD", "Elevator", "Climber", "Rigging"],
+    media: [
+      { type: "video", src: "images/frc-climb-elevator.mp4", poster: "images/frc-climb-elevator-poster.jpg", caption: "The elevator pulling the robot up the chain to climb" },
+      { type: "image", src: "images/frc-climb-elevator-cad.png", caption: "My CAD: the dual-purpose elevator and its drive motors" },
+      { type: "image", src: "images/frc-climb-rigging-sketch.png", caption: "My CAD: string rigging geometry sketch, with the string routed inside the tubes" }
+    ]
+  }
+];
+
+/* ---------- site code (no need to edit below) ---------- */
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const cover = p => { const m = p.media?.[0]; return m ? (m.type === "video" ? m.poster : m.src) : ""; };
+const mediaLabel = m => { const v = m.filter(x => x.type === "video").length, i = m.length - v;
+  return [i && `${i} ${i === 1 ? "photo" : "photos"}`, v && `${v} ${v === 1 ? "video" : "videos"}`].filter(Boolean).join(" · "); };
+const metaLine = p => [p.year, p.role].filter(Boolean).map(x => `<span>${esc(x)}</span>`).join("");
+
+/* cards */
+document.getElementById("grid").innerHTML = PROJECTS.map(p => `
+  <a class="card" href="#${esc(p.id)}">
+    <div class="thumb">
+      ${cover(p) ? `<img src="${esc(cover(p))}" alt="" loading="lazy">` : ""}
+      ${p.media?.length ? `<span class="badge">${mediaLabel(p.media)}</span>` : ""}
+    </div>
+    <div class="body">
+      <div class="meta">${metaLine(p)}</div>
+      <h3>${esc(p.title)}</h3>
+      <p>${esc(p.summary)}</p>
+      <ul class="tags">${(p.tags || []).map(t => `<li>${esc(t)}</li>`).join("")}</ul>
+      <span class="more">View project →</span>
+    </div>
+  </a>`).join("");
+
+/* detail page */
+const home = document.getElementById("home"), detail = document.getElementById("detail"), body = document.getElementById("detailBody");
+function mediaHTML(m){
+  return m.type === "video"
+    ? `<video src="${esc(m.src)}" poster="${esc(m.poster || "")}" controls autoplay muted loop playsinline></video>`
+    : `<img src="${esc(m.src)}" alt="${esc(m.caption || "")}">`;
+}
+function renderDetail(p){
+  const i = PROJECTS.indexOf(p), prev = PROJECTS[i - 1], next = PROJECTS[i + 1], media = p.media || [];
+  body.innerHTML = `
+    <a class="back" href="#projects" data-home>← All projects</a>
+    <div class="dhead">
+      <div class="meta">${metaLine(p)}</div>
+      <h1>${esc(p.title)}</h1>
+      <p class="summary">${esc(p.summary)}</p>
+    </div>
+    <div class="dgrid">
+      <div>
+        ${media.length ? `
+        <div class="stage">
+          <div class="media" id="stageMedia">${mediaHTML(media[0])}</div>
+          <div class="cap"><span id="stageCap">${esc(media[0].caption)}</span><span class="n" id="stageN">1 / ${media.length}</span></div>
+        </div>
+        ${media.length > 1 ? `<div class="strip">${media.map((m, j) => `
+          <button type="button" data-j="${j}" aria-current="${j === 0}" aria-label="Show ${m.type} ${j + 1}">
+            <img src="${esc(m.type === "video" ? m.poster : m.src)}" alt="">${m.type === "video" ? `<span class="play">▶</span>` : ""}
+          </button>`).join("")}</div>` : ""}` : ""}
+      </div>
+      <aside class="side">
+        ${p.details ? `<div><h4>About</h4><p>${esc(p.details)}</p></div>` : ""}
+        ${(p.specs || []).length ? `<div><h4>Details</h4><dl class="spec">${p.specs.map(s => `<div><dt>${esc(s.label)}</dt><dd>${esc(s.value)}</dd></div>`).join("")}</dl></div>` : ""}
+        ${(p.tags || []).length ? `<div><h4>Skills</h4><ul class="tags">${p.tags.map(t => `<li>${esc(t)}</li>`).join("")}</ul></div>` : ""}
+      </aside>
+    </div>
+    <div class="pager">
+      ${prev ? `<a href="#${esc(prev.id)}"><span class="k">← Previous</span><span class="t">${esc(prev.title)}</span></a>` : ""}
+      ${next ? `<a href="#${esc(next.id)}"><span class="k">Next →</span><span class="t">${esc(next.title)}</span></a>` : ""}
+    </div>`;
+  body.querySelectorAll(".strip button").forEach(b => b.addEventListener("click", () => {
+    const j = +b.dataset.j, m = media[j];
+    document.getElementById("stageMedia").innerHTML = mediaHTML(m);
+    document.getElementById("stageCap").textContent = m.caption || "";
+    document.getElementById("stageN").textContent = `${j + 1} / ${media.length}`;
+    body.querySelectorAll(".strip button").forEach((x, k) => x.setAttribute("aria-current", k === j));
+  }));
+}
+
+/* simple hash routing: #project-id opens a project page */
+function route(){
+  const id = location.hash.slice(1), p = PROJECTS.find(x => x.id === id);
+  if (p){
+    renderDetail(p); home.hidden = true; detail.hidden = false;
+    document.title = p.title + " · Ishaan Rao";
+    window.scrollTo(0, 0);
+  } else {
+    const wasDetail = !detail.hidden;
+    detail.hidden = true; home.hidden = false; body.innerHTML = "";
+    document.title = "Ishaan Rao Portfolio";
+    if (wasDetail){ const t = id && document.getElementById(id); t ? t.scrollIntoView() : window.scrollTo(0, 0); }
+  }
+}
+window.addEventListener("hashchange", route);
+route();
+
+/* copy email */
+document.getElementById("copyEmail").addEventListener("click", async e => {
+  const btn = e.currentTarget, el = document.getElementById("email");
+  try { await navigator.clipboard.writeText(el.textContent); btn.textContent = "Copied"; }
+  catch { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Selected"; }
+  setTimeout(() => btn.textContent = "Copy email", 1600);
+});
+</script>
+
+</body>
+</html>
